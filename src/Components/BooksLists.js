@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import CurrentBookshelf from "./CurrentBookshelf";
-import WantToReadBookshelf from "./WantToReadBookshelf";
-import ReadBookshelf from "./ReadBookshelf";
 import {Link} from "react-router-dom";
+import Shelf from "./Shelf";
 
 class BooksLists extends Component {
+
+
+
     render() {
         return(
             <div className="list-books">
@@ -13,19 +14,15 @@ class BooksLists extends Component {
                 </div>
                 <div className="list-books-content">
                     <div>
-
-                        <CurrentBookshelf
-                            currentlyReading={this.props.currentlyReading}
-                        />
-
-                        <WantToReadBookshelf
-                            wantToRead={this.props.wantToRead}
-                        />
-
-                        <ReadBookshelf
-                            read={this.props.read}
-                        />
-
+                        {
+                                this.props.sections.map((section) => (
+                                    <Shelf
+                                        sectionName={section.name}
+                                        sectionKey={section.sectionKey}
+                                        books={this.props.allBooks}
+                                    />
+                                ))
+                        }
                     </div>
                 </div>
                 <div className="open-search">
