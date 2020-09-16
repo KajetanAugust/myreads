@@ -1,12 +1,10 @@
 import React from 'react'
 // import * as BooksAPI from './BooksAPI'
 import './App.css'
-import { Route, Link } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 
-import CurrentBookshelf from "./Components/CurrentBookshelf";
 // import Book from "./Components/Book";
-import WantToReadBookshelf from "./Components/WantToReadBookshelf";
-import ReadBookshelf from "./Components/ReadBookshelf";
+import BooksLists from "./Components/BooksLists";
 import Search from "./Components/Search";
 
 class BooksApp extends React.Component {
@@ -32,34 +30,13 @@ class BooksApp extends React.Component {
       <div className="app">
 
         <Route exact path='/' render={() => (
-            <div className="list-books">
-              <div className="list-books-title">
-                <h1>MyReads</h1>
-              </div>
-              <div className="list-books-content">
-                <div>
-
-                  <CurrentBookshelf
-                      currentlyReading={this.state.currentlyReading}
-                  />
-
-                  <WantToReadBookshelf
-                      wantToRead={this.state.wantToRead}
-                  />
-
-                  <ReadBookshelf
-                      read={this.state.read}
-                  />
-
-                </div>
-              </div>
-              <div className="open-search">
-                <Link to='/search'>
-                  <button>Add a book</button>
-                </Link>
-              </div>
-            </div>
-        )} />
+                <BooksLists
+                    currentlyReading={this.state.currentlyReading}
+                    wantToRead={this.state.wantToRead}
+                    read={this.state.read}
+                />
+            )}
+        />
 
         <Route path='/search' render={() => (
           <Search />
