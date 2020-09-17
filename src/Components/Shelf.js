@@ -20,6 +20,8 @@ class Shelf extends Component {
                                     bookUrl={book.url}
                                     bookTitle={book.title}
                                     bookAuthor={book.author}
+                                    bookStatus={book.status}
+                                    movingBook={this.props.movingBook}
                                 />
                             ))}
                     </ol>

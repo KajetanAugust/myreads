@@ -20,6 +20,7 @@ class BooksLists extends Component {
                                         sectionName={section.name}
                                         sectionKey={section.sectionKey}
                                         books={this.props.allBooks}
+                                        movingBook={this.props.movingBook}
                                     />
                                 ))
                         }
