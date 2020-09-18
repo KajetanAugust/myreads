@@ -15,10 +15,13 @@ class Book extends Component {
     changingShelf = (e) => {
         const targetValue = e.target.value;
         const name = e.target.parentNode.parentNode.nextSibling.textContent;
+        const author = e.target.parentNode.parentNode.nextSibling.nextSibling.textContent;
+        const thumbnail = this.props.bookUrl;
         this.setState({
             value: targetValue
         })
-        this.props.movingBook(targetValue, name);
+
+        this.props.movingBook(targetValue, name, author, thumbnail);
     }
 
     render() {

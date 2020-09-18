@@ -26,30 +26,29 @@ class BooksApp extends React.Component {
     ],
   }
 
-  // componentDidMount() {
-  //     BooksAPI.getAll()
-  //         .then( books =>
-  //             this.setState({
-  //                 allBooks:books.data
-  //             })
-  //       )
-  // }
 
+    movingBook = (value, name, author, thumbnail) => {
+        const bookToChange = this.state.allBooks.filter( book => book.title === name);
 
-    movingBook = (value, name) => {
-    const filteredBooks = this.state.allBooks.filter( book => book.title !== name);
-    const bookToChange = this.state.allBooks.filter( book => book.title === name);
-    bookToChange[0].status = value;
-    const newBooksOrder = [...filteredBooks, ...bookToChange];
-    console.log(newBooksOrder)
-    this.setState({
-        allBooks: newBooksOrder
-    })
-  }
-
-  searchingBooks = (query) => {
+        if(bookToChange.length > 0) {
+            const filteredBooks = this.state.allBooks.filter( book => book.title !== name);
+            bookToChange[0].status = value;
+            const newBooksOrder = [...filteredBooks, ...bookToChange];
+            console.log(newBooksOrder)
+            this.setState({
+                allBooks: newBooksOrder
+            })
+        } else {
+            const bookToAdd = {url: thumbnail, title: name, author: author, status: value}
+            const books = this.state.allBooks;
+            const newBooks= [...books, bookToAdd  ]
+            this.setState({
+                allBooks: newBooks
+            })
+        }
 
   }
+
 
   render() {
       console.log(this.state.allBooks)
@@ -67,7 +66,9 @@ class BooksApp extends React.Component {
 
 
         <Route path='/search' render={() => (
-          <Search />
+          <Search
+            movingBook={this.movingBook}
+          />
         )} />
 
       </div>

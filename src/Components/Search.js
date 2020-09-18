@@ -6,21 +6,25 @@ import Book from "./Book";
 class Search extends Component {
     state = {
         query:'',
-        searchedBooks: '',
+        searchedBooks: [],
     }
 
     updateQuery = (query) => {
-        this.setState(() => ({
-            query: query
-        }));
-    }
+            this.setState(() => ({
+                query: query
+            }));
 
-    componentDidUpdate(prevProps, prevState, snapshot) {
-        BooksAPI.search(this.state.query).then(data => this.setState({
-            searchedBooks:data
-        }));
-    }
+        if(query) {
+            BooksAPI.search(query).then(data => this.setState({
+                searchedBooks:data
+            }));
+        } else {
+            this.setState({
+                searchedBooks:[]
+            })
+        }
 
+    }
 
     render() {
         return(
@@ -53,18 +57,20 @@ class Search extends Component {
                 <div className="search-books-results">
                     <ol className="books-grid">
                         {
-                            this.state.query === ''
+                            this.state.searchedBooks.length > 0
                                 ?
-                                <li>No Results, yet</li>
-                                :
                                 this.state.searchedBooks.map( book =>
                                     <Book
                                         bookUrl={book.imageLinks.thumbnail}
                                         bookTitle={book.title}
                                         bookAuthor={book.authors}
                                         bookStatus={'none'}
+                                        movingBook={this.props.movingBook}
                                     />
                                 )
+                                :
+                                <li>No results</li>
+
                         }
                     </ol>
                 </div>
