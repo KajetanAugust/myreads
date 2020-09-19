@@ -26,6 +26,14 @@ class BooksApp extends React.Component {
     ],
   }
 
+    // componentDidMount() {
+    //     BooksAPI.getAll().then(res => {
+    //         this.setState({
+    //             allBooks: res,
+    //         })
+    //     })
+    // }
+
 
     movingBook = (value, name, author, thumbnail) => {
         const bookToChange = this.state.allBooks.filter( book => book.title === name);

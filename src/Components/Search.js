@@ -10,21 +10,51 @@ class Search extends Component {
         searchedBooks: [],
     }
 
-    updateQuery = (query) => {
-            this.setState(() => ({
-                query: query
-            }));
 
-        if(query) {
-            BooksAPI.search(query).then(data => this.setState({
-                searchedBooks:data
-            }));
-        } else {
-            this.setState({
-                searchedBooks: []
-            })
+    updateQuery= (query)=>{
+        if(query===null||query==='')
+        {
+            this.setState(()=>({query:''}))
+            this.setState(()=>({
+                searchedBooks:[]
+            }))
+        }
+        else{
+            this.setState({ query: query })
+            this.finder(query)
         }
     }
+
+
+    finder = (query) => {
+        BooksAPI.search(query).then((responses) => {
+            console.log(responses);
+            if (query !== this.state.query) {
+                return;
+            }
+            if (responses.error !== "empty query") {
+                let fresponses = responses.filter((response) => {
+                    return (
+                        response.hasOwnProperty("imageLinks") &&
+                        response.hasOwnProperty("authors") &&
+                        response.imageLinks.hasOwnProperty("thumbnail")
+                    );
+                });
+                console.log("fresponses", fresponses);
+                if (fresponses.length !== 0) {
+                    this.setState({ searchedBooks: fresponses });
+                } else {
+                    this.setState(() => ({
+                        searchedBooks: [],
+                    }));
+                }
+            } else {
+                this.setState(() => ({
+                    searchedBooks: [],
+                }));
+            }
+        });
+    };
 
     render() {
         return(
