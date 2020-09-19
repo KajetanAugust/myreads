@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 
+
 class Book extends Component {
 
     state ={
@@ -25,9 +26,8 @@ class Book extends Component {
     }
 
     render() {
-        console.log(this.props.bookStatus)
         return(
-            <li>
+            <li key={this.props.bookTitle}>
                 <div className="book">
                     <div className="book-top">
                         <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${this.props.bookUrl})` }}></div>
@@ -48,5 +48,9 @@ class Book extends Component {
         )
     }
 }
+
+Book.defaultProps = {
+    bookUrl: ''
+};
 
 export default Book;

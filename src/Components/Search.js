@@ -4,6 +4,7 @@ import * as BooksAPI from '../BooksAPI';
 import Book from "./Book";
 
 class Search extends Component {
+
     state = {
         query:'',
         searchedBooks: [],
@@ -20,10 +21,9 @@ class Search extends Component {
             }));
         } else {
             this.setState({
-                searchedBooks:[]
+                searchedBooks: []
             })
         }
-
     }
 
     render() {
@@ -42,9 +42,8 @@ class Search extends Component {
                   However, remember that the BooksAPI.search method DOES search by title or author. So, don't worry if
                   you don't find a specific author or title. Every search is limited by search terms.
                 */
-
-
                         }
+
                         <input
                             type="text"
                             placeholder="Search by title or author"
@@ -70,7 +69,6 @@ class Search extends Component {
                                 )
                                 :
                                 <li>No results</li>
-
                         }
                     </ol>
                 </div>

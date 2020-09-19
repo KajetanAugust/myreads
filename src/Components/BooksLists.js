@@ -21,6 +21,7 @@ class BooksLists extends Component {
                                         sectionKey={section.sectionKey}
                                         books={this.props.allBooks}
                                         movingBook={this.props.movingBook}
+                                        key={section.sectionKey}
                                     />
                                 ))
                         }

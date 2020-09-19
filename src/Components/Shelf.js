@@ -10,7 +10,7 @@ class Shelf extends Component {
         });
 
         return (
-            <div className="bookshelf">
+            <div className="bookshelf" key={this.props.sectionName}>
                 <h2 className="bookshelf-title">{this.props.sectionName}</h2>
                 <div className="bookshelf-books">
                     <ol className="books-grid">
@@ -22,6 +22,7 @@ class Shelf extends Component {
                                     bookAuthor={book.author}
                                     bookStatus={book.status}
                                     movingBook={this.props.movingBook}
+                                    key={book.title}
                                 />
                             ))}
                     </ol>
