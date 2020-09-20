@@ -90,10 +90,7 @@ class Search extends Component {
                                 ?
                                 this.state.searchedBooks.map( book =>
                                     <Book
-                                        bookUrl={book.imageLinks.thumbnail}
-                                        bookTitle={book.title}
-                                        bookAuthor={book.authors}
-                                        bookStatus={'none'}
+                                        book={book}
                                         movingBook={this.props.movingBook}
                                     />
                                 )

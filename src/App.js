@@ -27,33 +27,20 @@ class BooksApp extends React.Component {
     }
 
 
-    movingBook = (value, name, author, thumbnail) => {
-        const bookToChange = this.state.allBooks.filter( book => book.title === name);
-
-        //TODO: Refactor movingBook to use key instead of name for moving books
-        if(bookToChange.length > 0) {
-            const filteredBooks = this.state.allBooks.filter( book => book.title !== name);
-            bookToChange[0].shelf = value;
-            const newBooksOrder = [...filteredBooks, ...bookToChange];
-            console.log(newBooksOrder)
-            this.setState({
-                allBooks: newBooksOrder
-            })
-        } else {
-            const bookToAdd = {url: thumbnail, title: name, author: author, shelf: value}
-            const books = this.state.allBooks;
-            const newBooks= [...books, bookToAdd  ]
-            this.setState({
-                allBooks: newBooks
-            })
-        }
-
+    movingBook = (book, newShelfValue) => {
+        BooksAPI.update(book, newShelfValue)
+            .then(() => {
+                BooksAPI.getAll()
+                    .then(res => {
+                        this.setState({
+                            allBooks: res,
+                        })
+                    })
+        })
   }
 
-    //TODO: Add connection with API update method
 
   render() {
-      console.log(this.state.allBooks)
     return (
       <div className="app">
 

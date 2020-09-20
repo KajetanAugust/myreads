@@ -3,36 +3,31 @@ import React, { Component } from 'react';
 
 class Book extends Component {
 
-    state ={
-        value:'',
-    }
+    // state ={
+    //     book:''
+    // }
 
-    componentDidMount() {
-        this.setState({
-            value:this.props.bookStatus
-        })
-    }
+    // componentDidMount() {
+    //     this.setState({
+    //         book:this.props.book,
+    //     })
+    // }
 
-    changingShelf = (e) => {
-        const targetValue = e.target.value;
-        const name = e.target.parentNode.parentNode.nextSibling.textContent;
-        const author = e.target.parentNode.parentNode.nextSibling.nextSibling.textContent;
-        const thumbnail = this.props.bookUrl;
-        this.setState({
-            value: targetValue
-        })
-
-        this.props.movingBook(targetValue, name, author, thumbnail);
-    }
+    // changingShelf = (e) => {
+    //     const targetValue = e.target.value;
+    //     const book = this.props.book;
+    //
+    //     this.props.movingBook(targetValue, book);
+    // }
 
     render() {
         return(
-            <li key={this.props.bookTitle}>
+            <li key={this.props.book.id}>
                 <div className="book">
                     <div className="book-top">
-                        <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${this.props.bookUrl})` }}></div>
+                        <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${this.props.book.imageLinks.thumbnail})` }}></div>
                         <div className="book-shelf-changer">
-                                <select value={this.state.value} onChange={(e) => this.changingShelf(e)}>
+                                <select value={this.props.book.shelf} onChange={(e) => this.props.movingBook(this.props.book, e.target.value,)}>
                                     <option value="move" disabled>Move to...</option>
                                     <option value="currentlyReading">Currently Reading</option>
                                     <option value="wantToRead">Want to Read</option>
@@ -41,16 +36,12 @@ class Book extends Component {
                                 </select>
                         </div>
                     </div>
-                    <div className="book-title">{this.props.bookTitle}</div>
-                    <div className="book-authors">{this.props.bookAuthor}</div>
+                    <div className="book-title">{this.props.book.title}</div>
+                    <div className="book-authors">{this.props.book.authors}</div>
                 </div>
             </li>
         )
     }
 }
-
-Book.defaultProps = {
-    bookUrl: ''
-};
 
 export default Book;
