@@ -6,7 +6,7 @@ class Shelf extends Component {
 
         const sectionKey = this.props.sectionKey;
         const books = this.props.books.filter( book => {
-            return book.status === sectionKey;
+            return book.shelf === sectionKey;
         });
 
         return (
@@ -17,12 +17,12 @@ class Shelf extends Component {
                         {
                             books.map( book => (
                                 <Book
-                                    bookUrl={book.url}
+                                    bookUrl={book.imageLinks.thumbnail}
                                     bookTitle={book.title}
                                     bookAuthor={book.author}
-                                    bookStatus={book.status}
+                                    bookStatus={book.shelf}
                                     movingBook={this.props.movingBook}
-                                    key={book.title}
+                                    key={book.id}
                                 />
                             ))}
                     </ol>
