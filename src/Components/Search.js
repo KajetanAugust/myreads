@@ -21,28 +21,28 @@ class Search extends Component {
         }
         else{
             this.setState({ query: query })
-            this.finder(query)
+            this.findBooks(query)
         }
     }
 
 
-    finder = (query) => {
+    findBooks = (query) => {
         BooksAPI.search(query).then((responses) => {
             console.log(responses);
             if (query !== this.state.query) {
                 return;
             }
             if (responses.error !== "empty query") {
-                let fresponses = responses.filter((response) => {
+                let filteredResponses = responses.filter((response) => {
                     return (
                         response.hasOwnProperty("imageLinks") &&
                         response.hasOwnProperty("authors") &&
                         response.imageLinks.hasOwnProperty("thumbnail")
                     );
                 });
-                console.log("fresponses", fresponses);
-                if (fresponses.length !== 0) {
-                    this.setState({ searchedBooks: fresponses });
+                console.log("Filtered Responses", filteredResponses);
+                if (filteredResponses.length !== 0) {
+                    this.setState({ searchedBooks: filteredResponses });
                 } else {
                     this.setState(() => ({
                         searchedBooks: [],
