@@ -30,6 +30,7 @@ class BooksApp extends React.Component {
     movingBook = (value, name, author, thumbnail) => {
         const bookToChange = this.state.allBooks.filter( book => book.title === name);
 
+        //TODO: Refactor movingBook to use key instead of name for moving books
         if(bookToChange.length > 0) {
             const filteredBooks = this.state.allBooks.filter( book => book.title !== name);
             bookToChange[0].shelf = value;
@@ -49,6 +50,7 @@ class BooksApp extends React.Component {
 
   }
 
+    //TODO: Add connection with API update method
 
   render() {
       console.log(this.state.allBooks)
