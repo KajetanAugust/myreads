@@ -3,9 +3,6 @@ import {Link} from "react-router-dom";
 import Shelf from "./Shelf";
 
 class BooksLists extends Component {
-
-
-
     render() {
         return(
             <div className="list-books">

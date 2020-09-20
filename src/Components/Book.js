@@ -2,24 +2,6 @@ import React, { Component } from 'react';
 
 
 class Book extends Component {
-
-    // state ={
-    //     book:''
-    // }
-
-    // componentDidMount() {
-    //     this.setState({
-    //         book:this.props.book,
-    //     })
-    // }
-
-    // changingShelf = (e) => {
-    //     const targetValue = e.target.value;
-    //     const book = this.props.book;
-    //
-    //     this.props.movingBook(targetValue, book);
-    // }
-
     render() {
         return(
             <li key={this.props.book.id}>
@@ -37,7 +19,7 @@ class Book extends Component {
                         </div>
                     </div>
                     <div className="book-title">{this.props.book.title}</div>
-                    <div className="book-authors">{this.props.book.authors}</div>
+                    <div className="book-authors">{this.props.book.authors.join(', ')}</div>
                 </div>
             </li>
         )
