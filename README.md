@@ -50,8 +50,14 @@ search(query)
 * Returns a Promise which resolves to a JSON object containing a collection of a maximum of 20 book objects.
 * These books do not know which shelf they are on. They are raw results only. You'll need to make sure that books have the correct state while on the search page.
 
-## Contributing
 
-This repository is the starter code for _all_ Udacity students. Therefore, we most likely will not accept pull requests.
+##Thanks
 
-For details, check out [CONTRIBUTING.md](CONTRIBUTING.md).
+* I wanted to thank Udacity Mentor for the help on forum in this threads:
+
+    https://knowledge.udacity.com/questions/334708 ). 
+ 
+* I have also searched forum for answers and used this answers provided by Mentor:
+  
+  https://knowledge.udacity.com/questions/269489
+
