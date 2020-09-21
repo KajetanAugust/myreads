@@ -20,6 +20,7 @@ class Shelf extends Component {
                                     book={book}
                                     movingBook={this.props.movingBook}
                                     key={book.id}
+                                    library={this.props.books}
                                 />
                             ))}
                     </ol>

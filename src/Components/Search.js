@@ -56,6 +56,26 @@ class Search extends Component {
         });
     };
 
+    // checkingForDuplicates= () => {
+    //     const library = this.props.library;
+    //     const searchResults = this.state.searchedBooks;
+    //
+    //     const duplicates = searchResults.map( searchBook => library.filter( libBook => {
+    //         return libBook.id === searchBook.id
+    //     })).filter( result => result.length > 0);
+    //
+    //     console.log(duplicates);
+    //
+    //     const newResults = searchResults.map( searchBook => duplicates.map( dupliBook => {
+    //         return searchBook.id === dupliBook.id ? searchBook = dupliBook : searchBook = searchBook;
+    //     }))
+    //
+    //     this.setState({
+    //         searchResults: newResults
+    //     })
+    // }
+
+
     render() {
         return(
             <div className="search-books">
@@ -73,7 +93,6 @@ class Search extends Component {
                   you don't find a specific author or title. Every search is limited by search terms.
                 */
                         }
-
                         <input
                             type="text"
                             placeholder="Search by title or author"
@@ -90,6 +109,7 @@ class Search extends Component {
                                 ?
                                 this.state.searchedBooks.map( book =>
                                     <Book
+                                        library={this.props.library}
                                         book={book}
                                         movingBook={this.props.movingBook}
                                     />
