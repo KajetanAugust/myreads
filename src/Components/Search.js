@@ -112,6 +112,7 @@ class Search extends Component {
                                         library={this.props.library}
                                         book={book}
                                         movingBook={this.props.movingBook}
+                                        key={book.id}
                                     />
                                 )
                                 :
